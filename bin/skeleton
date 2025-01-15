@@ -12,12 +12,13 @@ case "${1}" in
         "${libexec}"/commands/clone "${2}"
         exit "${?}"
         ;;
+    "pull")
+        "${libexec}"/commands/pull "${2}"
+        exit "${?}"
+        ;;
     "install")
         "${libexec}"/commands/install "${2}" "${3}"
         exit "${?}"
-        ;;
-    "pull")
-        "${libexec}"/commands/pull "${2}"
         ;;
     *)
         printf "Usage: skeleton COMMAND [OPTIONS]\n"
