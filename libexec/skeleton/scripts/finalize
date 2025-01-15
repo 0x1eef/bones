@@ -1,8 +1,4 @@
 #!/bin/sh
-# -*- mode: sh -*-
-
-##
-# baseline
 set -e
 
 ##
