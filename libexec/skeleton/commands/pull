@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+name="${1}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/${name}"
+
+
+##
+# main
+if [ -z "${name}" ]; then
+    echo "skeleton: provide the name of a skeleton"
+    exit 1
+fi
+cd "${sourcedir}"
+git pull --rebase origin "$(git branch --show-current)"

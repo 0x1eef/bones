@@ -16,6 +16,9 @@ case "${1}" in
         "${libexec}"/commands/install "${2}" "${3}"
         exit "${?}"
         ;;
+    "pull")
+        "${libexec}"/commands/pull "${2}"
+        ;;
     *)
         printf "Usage: skeleton COMMAND [OPTIONS]\n"
         printf "\n"
