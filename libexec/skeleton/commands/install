@@ -14,7 +14,6 @@ if [ -d "${sourcedir}" ]; then
     find "${sourcedir}" -type d -mindepth 1 |
     sed "s|${sourcedir}/||" |
     while read -r dir; do
-        # shellcheck disable=SC2174
         mkdir -m 750 -p "${destdir}"/"${dir}"
         echo "skeleton: mkdir -m 750 -p $(realpath "${destdir}"/"${dir}")"
     done
