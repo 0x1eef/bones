@@ -9,11 +9,15 @@ destdir="${1}"
 # main
 if [ -e "${destdir}" ]; then
     chmod 750 "${destdir}"
+    echo "skeleton: chmod 750 ${destdir}"
 fi
 if [ -e "${destdir}"/bin ]; then
     find "${destdir}"/bin  -type f -exec chmod 750 {} \;
+    echo "skeleton: find ${destdir}/bin  -type f -exec chmod 750"
 fi
 if [ -e "${destdir}"/.ssh ]; then
     find "${destdir}"/.ssh -type d -exec chmod 700 {} \;
+    echo "skeleton: find ${destdir}/.ssh -type d -exec chmod 700"
     find "${destdir}"/.ssh -type f -exec chmod 600 {} \;
+    echo "skeleton: find ${destdir}/.ssh -type f -exec chmod 600"
 fi
