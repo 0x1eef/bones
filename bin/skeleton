@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+libexec="$(dirname "${0}")/../libexec/skeleton"
+
+##
+# main
+case "${1}" in
+    "clone")
+        "${libexec}"/commands/clone "${2}"
+        exit "${?}"
+        ;;
+    "install")
+        "${libexec}"/commands/install "${2}" "${3}"
+        exit "${?}"
+        ;;
+    *)
+        printf "Usage: skeleton COMMAND [OPTIONS]\n"
+        printf "\n"
+        printf "General\n"
+        printf "  clone       Clone a skeleton repository\n"
+        printf "  pull        Pull updates from a skeleton repository\n"
+        printf "  install     Install a skeleton\n"
+        exit 1
+        ;;
+esac
+
+

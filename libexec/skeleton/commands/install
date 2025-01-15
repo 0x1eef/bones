@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+name="${1}"
+destdir="${2}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/${name}"
+libexec=$(realpath "$(dirname "${0}")/..")
+
+##
+# main
+if [ -d "${sourcedir}" ]; then
+    find "${sourcedir}" -type d -mindepth 1 |
+    while read -r dir; do
+        # shellcheck disable=SC2174
+        mkdir -m 750 -p "${destdir}"/"${dir}"
+    done
+    find "${sourcedir}" -type f -mindepth 1 |
+    while read -r file; do
+        "${libexec}"/scripts/install "${sourcedir}" "${destdir}" "${file}"
+    done
+    "${libexec}"/scripts/finalize "${destdir}"
+else
+    echo "skeleton: ${sourcedir} is not a directory"
+    exit 1
+fi

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+##
+# vars
+repourl="${1}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}"
+basename="$(basename "${repourl}" .git)"
+
+##
+# main
+if git clone "${repourl}" "${sourcedir}"/"${basename}"; then
+    echo "skeleton: clone complete"
+else
+    rc="${?}"
+    echo "skeleton: unexpected clone error"
+    exit "${rc}"
+fi

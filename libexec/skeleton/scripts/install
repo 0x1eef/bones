@@ -1,0 +1,38 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+sourcedir="${1}"
+destdir="${2}"
+file="${3}"
+dest=""
+temp=""
+
+##
+# functions
+run_install()
+{
+    local source="${1}"
+    local dest="${2}"
+    local mode="644"
+    install -m "${mode}" "${source}" "${dest}"
+}
+
+##
+# main
+file=$(echo "${file}" | sed "s|${sourcedir}||")
+dest="${destdir}"/"${file}"
+if [ -e "${dest}" ]; then
+    if [ "$(cat "${dest}")" = "" ]; then
+        run_install "${file}" "${dest}"
+    elif ! cmp -s "${dest}" "${file}"; then
+        temp=$(mktemp)
+        if sdiff -o "${temp}" "${file}" "${dest}"; then
+            run_install "${temp}" "${dest}"
+        fi
+        rm "${temp}"
+    fi
+else
+    run_install "${file}" "${dest}"
+fi
