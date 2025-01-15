@@ -17,12 +17,13 @@ run_install()
     local dest="${2}"
     local mode="644"
     install -m "${mode}" "${source}" "${dest}"
+    echo "skeleton: install -m ${mode} ${source} ${dest}"
 }
 
 ##
 # main
-file=$(echo "${file}" | sed "s|${sourcedir}||")
 dest="${destdir}"/"${file}"
+file="${sourcedir}"/"${file}"
 if [ -e "${dest}" ]; then
     if [ "$(cat "${dest}")" = "" ]; then
         run_install "${file}" "${dest}"
@@ -32,6 +33,8 @@ if [ -e "${dest}" ]; then
             run_install "${temp}" "${dest}"
         fi
         rm "${temp}"
+    else
+        echo "skeleton: nothing to do"
     fi
 else
     run_install "${file}" "${dest}"

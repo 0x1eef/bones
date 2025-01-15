@@ -4,7 +4,7 @@ set -e
 ##
 # vars
 name="${1}"
-destdir="${2}"
+destdir=$(realpath "${2}")
 sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/${name}"
 libexec=$(realpath "$(dirname "${0}")/..")
 
@@ -12,11 +12,14 @@ libexec=$(realpath "$(dirname "${0}")/..")
 # main
 if [ -d "${sourcedir}" ]; then
     find "${sourcedir}" -type d -mindepth 1 |
+    sed "s|${sourcedir}/||" |
     while read -r dir; do
         # shellcheck disable=SC2174
         mkdir -m 750 -p "${destdir}"/"${dir}"
+        echo "skeleton: mkdir -m 750 -p $(realpath "${destdir}"/"${dir}")"
     done
     find "${sourcedir}" -type f -mindepth 1 |
+    sed "s|${sourcedir}/||" |
     while read -r file; do
         "${libexec}"/scripts/install "${sourcedir}" "${destdir}" "${file}"
     done
