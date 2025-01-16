@@ -4,8 +4,7 @@ set -e
 ##
 # vars
 name="${1}"
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/${name}"
-
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${name}"
 
 ##
 # main

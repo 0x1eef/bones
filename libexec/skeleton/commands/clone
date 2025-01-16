@@ -3,11 +3,14 @@
 ##
 # vars
 repourl="${1}"
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton"
 basename="$(basename "${repourl}" .git)"
 
 ##
 # main
+if [ ! -e "${sourcedir}" ]; then
+    mkdir -m 750 -p "${sourcedir}"
+fi
 if git clone "${repourl}" "${sourcedir}"/"${basename}"; then
     echo "skeleton: clone complete"
 else
