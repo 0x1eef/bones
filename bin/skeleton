@@ -23,7 +23,7 @@ case "${1}" in
     *)
         printf "Usage: skeleton COMMAND [OPTIONS]\n"
         printf "\n"
-        printf "General\n"
+        printf "Commands\n"
         printf "  clone       Clone a skeleton repository\n"
         printf "  pull        Pull updates from a skeleton repository\n"
         printf "  install     Install a skeleton\n"
