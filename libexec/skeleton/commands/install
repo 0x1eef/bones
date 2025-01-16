@@ -3,9 +3,9 @@ set -e
 
 ##
 # vars
-name="${1}"
+basename="${1}"
 destdir=$(realpath "${2}")
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${name}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${basename}"
 libexec=$(realpath "$(dirname "${0}")/..")
 
 ##

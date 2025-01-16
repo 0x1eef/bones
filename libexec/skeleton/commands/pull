@@ -3,12 +3,12 @@ set -e
 
 ##
 # vars
-name="${1}"
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${name}"
+basename="${1}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${basename}"
 
 ##
 # main
-if [ -z "${name}" ]; then
+if [ -z "${basename}" ]; then
     echo "skeleton: provide the name of a skeleton"
     exit 1
 fi
