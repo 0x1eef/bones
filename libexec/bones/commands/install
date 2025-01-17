@@ -5,7 +5,7 @@ set -e
 # vars
 basename="${1}"
 destdir=$(realpath "${2}")
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${basename}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/bones/${basename}"
 libexec=$(realpath "$(dirname "${0}")/..")
 
 ##
@@ -15,7 +15,7 @@ if [ -d "${sourcedir}" ]; then
     sed "s|${sourcedir}/||" |
     while read -r dir; do
         mkdir -m 750 -p "${destdir}"/"${dir}"
-        echo "skeleton: mkdir -m 750 -p $(realpath "${destdir}"/"${dir}")"
+        echo "bones: mkdir -m 750 -p $(realpath "${destdir}"/"${dir}")"
     done
     find "${sourcedir}" -type f -mindepth 1 |
     sed "s|${sourcedir}/||" |
@@ -24,6 +24,6 @@ if [ -d "${sourcedir}" ]; then
     done
     "${libexec}"/scripts/finalize "${destdir}"
 else
-    echo "skeleton: ${sourcedir} is not a directory"
+    echo "bones: ${sourcedir} is not a directory"
     exit 1
 fi

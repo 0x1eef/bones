@@ -3,7 +3,7 @@ set -e
 
 ##
 # vars
-libexec="$(dirname "${0}")/../libexec/skeleton"
+libexec="$(dirname "${0}")/../libexec/bones"
 
 ##
 # main
@@ -21,12 +21,12 @@ case "${1}" in
         exit "${?}"
         ;;
     *)
-        printf "Usage: skeleton COMMAND [OPTIONS]\n"
+        printf "Usage: bones COMMAND [OPTIONS]\n"
         printf "\n"
         printf "Commands\n"
-        printf "  clone       Clone a skeleton repository\n"
-        printf "  pull        Pull updates from a skeleton repository\n"
-        printf "  install     Install a skeleton\n"
+        printf "  clone       Clone a skeleton\n"
+        printf "  pull        Pull skeleton updates\n"
+        printf "  install     Install into a target directory\n"
         exit 1
         ;;
 esac

@@ -3,7 +3,7 @@
 ##
 # vars
 repourl="${1}"
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/bones/"
 basename="$(basename "${repourl}" .git)"
 
 ##
@@ -12,9 +12,9 @@ if [ ! -e "${sourcedir}" ]; then
     mkdir -m 750 -p "${sourcedir}"
 fi
 if git clone "${repourl}" "${sourcedir}"/"${basename}"; then
-    echo "skeleton: clone complete"
+    echo "bones: clone complete"
 else
     rc="${?}"
-    echo "skeleton: unexpected clone error"
+    echo "bones: unexpected clone error"
     exit "${rc}"
 fi

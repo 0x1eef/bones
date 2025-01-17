@@ -17,7 +17,7 @@ run_install()
     local dest="${2}"
     local mode="644"
     install -m "${mode}" "${source}" "${dest}"
-    echo "skeleton: install -m ${mode} ${source} ${dest}"
+    echo "bones: install -m ${mode} ${source} ${dest}"
 }
 
 ##
@@ -34,7 +34,7 @@ if [ -e "${dest}" ]; then
         fi
         rm "${temp}"
     else
-        echo "skeleton: nothing to do"
+        echo "bones: nothing to do"
     fi
 else
     run_install "${file}" "${dest}"

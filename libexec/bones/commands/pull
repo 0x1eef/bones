@@ -4,12 +4,12 @@ set -e
 ##
 # vars
 basename="${1}"
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/skeleton/${basename}"
+sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/bones/${basename}"
 
 ##
 # main
 if [ -z "${basename}" ]; then
-    echo "skeleton: provide the name of a skeleton"
+    echo "bones: provide the name of a skeleton"
     exit 1
 fi
 cd "${sourcedir}"
