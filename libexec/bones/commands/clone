@@ -8,9 +8,13 @@ basename="$(basename "${repourl}" .git)"
 
 ##
 # main
-if [ ! -e "${sourcedir}" ]; then
+if [ -z "${repourl}" ]; then
+    echo "bones: provide a repository url"
+    exit 1
+elif [ ! -e "${sourcedir}" ]; then
     mkdir -m 750 -p "${sourcedir}"
 fi
+
 if git clone "${repourl}" "${sourcedir}"/"${basename}"; then
     echo "bones: clone complete"
 else

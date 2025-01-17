@@ -4,7 +4,7 @@ set -e
 ##
 # vars
 basename="${1}"
-destdir=$(realpath "${2}")
+destdir="${2}"
 sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/${basename}"
 libexec=$(realpath "$(dirname "${0}")/..")
 user=$(id -n -u)
@@ -27,9 +27,15 @@ parse_options()
 
 ##
 # main
-shift 2
-parse_options "${@}"
-if [ -d "${sourcedir}" ]; then
+if [ -z "${basename}" ]; then
+    echo "bones: provide a skeleton or bone"
+    exit 1
+elif [ -z "${destdir}" ]; then
+    echo "bones: provide the path to a target"
+    exit 1
+elif [ -d "${sourcedir}" ]; then
+    shift 2
+    parse_options "${@}"
     find "${sourcedir}" -type d -mindepth 1 |
     sed "s|${sourcedir}/||" |
     while read -r dir; do
