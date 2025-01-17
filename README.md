@@ -6,6 +6,11 @@ The utility is inspired by a similar concept from UNIX operating
 systems, where a skeleton directory can serve as the basis for
 a user's `${HOME}` directory during the creation of a new user.
 
+At the time of writing this software is in the early stages of
+development, and probably only works on BSD-based operating
+systems. There's also plans to use BSD-specific tools in the
+future (namely doas(1)).
+
 ## Concepts
 
 #### Terminology
