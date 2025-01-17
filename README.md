@@ -59,4 +59,4 @@ TODO
 ## License
 
 [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/) <br>
-See [LICENSE](./LICENSE)
+See [LICENSE](./share/bones/LICENSE)
