@@ -16,9 +16,22 @@ or more directories at the top-level. Each directory is considered
 to be a "bone". When used with the `bones install` command,
 a bone from a skeleton can be installed in a way similar to
 the following example. Keep in mind that these concepts are
-important to understand when planning to use bones:
+important to understand when planning to use this utility:
 
-    user@localhost$ skeleton install <skeleton>/<bone> <target>
+    user@localhost$ bones install <skeleton>/<bone> <target>
+
+#### Conflicts
+
+While not neccessarily a concept, it is common enough to be worth
+a mention. Merge conflicts can occur when installing an updated
+version of a bone from a skeleton. It is expected that the user
+will manually resolve those conflicts as part of the install
+process. The
+[sdiff(1)](https://man.freebsd.org/cgi/man.cgi?sdiff)
+utility is used to help the user resolve merge conflicts, and
+it is recommended that the user is familiar with how to use it.
+It is generally inuitive to use so the learning curve is not that
+steep.
 
 ## CLI
 
@@ -41,6 +54,7 @@ TODO
 
 * [github.com/@0x1eef](https://github.com/0x1eef/bones)
 * [gitlab.com/@0x1eef](https://gitlab.com/0x1eef/bones)
+* [bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/bones)
 
 ## License
 
