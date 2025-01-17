@@ -3,7 +3,7 @@
 ##
 # vars
 repourl="${1}"
-sourcedir="${XDG_DATA_HOME:-${HOME}/.local/share}/bones/"
+sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/"
 basename="$(basename "${repourl}" .git)"
 
 ##
