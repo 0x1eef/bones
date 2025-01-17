@@ -6,6 +6,7 @@ set -e
 sourcedir="${1}"
 destdir="${2}"
 file="${3}"
+tty="/dev/tty"
 dest=""
 temp=""
 
@@ -29,9 +30,8 @@ if [ -e "${dest}" ]; then
         run_install "${file}" "${dest}"
     elif ! cmp -s "${dest}" "${file}"; then
         temp=$(mktemp)
-        if sdiff -o "${temp}" "${file}" "${dest}"; then
-            run_install "${temp}" "${dest}"
-        fi
+        sdiff -o "${temp}" "${file}" "${dest}" < "${tty}" || true
+        run_install "${temp}" "${dest}"
         rm "${temp}"
     else
         echo "bones: nothing to do"
