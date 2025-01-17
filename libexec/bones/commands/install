@@ -20,6 +20,8 @@ while getopts u:g: opt; do
         user="${OPTARG}"
     elif [ "${opt}" = "g" ]; then
         group="${OPTARG}"
+    else
+        exit 1
     fi
 done
 
