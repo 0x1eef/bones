@@ -11,14 +11,15 @@ a user's `${HOME}` directory during the creation of a new user.
 #### Terminology
 
 In the terminology of the bones utility, "a skeleton" refers
-to a git repository. Within the git repository, there can be one
-or more directories at the top-level. Each directory is considered
-to be a "bone". When used with the `bones install` command,
-a bone from a skeleton can be installed in a way similar to
-the following example. Keep in mind that these concepts are
-important to understand when planning to use this utility:
+to a cloned git repository. Within the cloned git repository,
+there can be one or more directories at the top-level.
+Each directory is considered to be a "bone". When used with
+the `bones install` command, a bone from a skeleton can be
+installed in a way similar to the following example.
+Keep in mind that these concepts are important to understand
+when planning to use this utility:
 
-    user@localhost$ bones install <skeleton>/<bone> <target>
+    user@localhost$ bones install skeleton/bone <target>
 
 #### Conflicts
 
