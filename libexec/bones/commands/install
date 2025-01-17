@@ -11,20 +11,24 @@ user=$(id -n -u)
 group=$(id -n -g)
 
 ##
-# main
-for _ in $(seq 1 2); do
-    shift
-done
-while getopts u:g: opt; do
-    if [ "${opt}" = "u" ]; then
-        user="${OPTARG}"
-    elif [ "${opt}" = "g" ]; then
-        group="${OPTARG}"
-    else
-        exit 1
-    fi
-done
+# functions
+parse_options()
+{
+    while getopts u:g: opt; do
+        if [ "${opt}" = "u" ]; then
+            user="${OPTARG}"
+        elif [ "${opt}" = "g" ]; then
+            group="${OPTARG}"
+        else
+            exit 1
+        fi
+    done
+}
 
+##
+# main
+shift 2
+parse_options "${@}"
 if [ -d "${sourcedir}" ]; then
     find "${sourcedir}" -type d -mindepth 1 |
     sed "s|${sourcedir}/||" |
