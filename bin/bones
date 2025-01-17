@@ -3,25 +3,27 @@ set -e
 
 ##
 # vars
+command="${1}"
 libexec="$(dirname "${0}")/../libexec/bones"
 
 ##
 # main
-case "${1}" in
+shift
+case "${command}" in
     "clone")
-        "${libexec}"/commands/clone "${2}"
+        "${libexec}"/commands/clone "${@}"
         exit "${?}"
         ;;
     "pull")
-        "${libexec}"/commands/pull "${2}"
+        "${libexec}"/commands/pull "${@}"
         exit "${?}"
         ;;
     "install")
-        "${libexec}"/commands/install "${2}" "${3}"
+        "${libexec}"/commands/install "${@}"
         exit "${?}"
         ;;
     *)
-        printf "Usage: bones COMMAND [OPTIONS]\n"
+        printf "Usage: bones COMMAND ARGUMENTS [OPTIONS]\n"
         printf "\n"
         printf "Commands\n"
         printf "  clone       Clone a skeleton\n"

@@ -39,13 +39,21 @@ steep.
 #### Commands
 
 * **bones clone** <br>
-Clone into ${HOME}/.local/share/bones/
+Clone into ${HOME}/.local/share/bones/. For example:
+
+        user@localhost$ bones clone https://github.com/0x1eef/skeleton
 
 * **bones pull** <br>
-Pull updates
+Pull updates. For example:
+
+        user@localhost$ bones pull skeleton
 
 * **bones install** <br>
-Install into a target directory
+Install into a target directory. The install command also takes
+a number of options that determine the ownership of the files
+and directories that are installed. For example:
+
+        user@localhost$ bones install skeleton/bone /target -u <user> -g <group>
 
 ## Install
 

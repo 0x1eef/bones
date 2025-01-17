@@ -4,12 +4,16 @@ set -e
 ##
 # vars
 destdir="${1}"
+user="${2}"
+group="${3}"
 
 ##
 # main
 if [ -e "${destdir}" ]; then
     chmod 750 "${destdir}"
     echo "bones: chmod 750 ${destdir}"
+    chown -R "${user}":"${group}" "${destdir}"
+    echo "bones: chown -R ${user}:${group} ${destdir}"
 fi
 if [ -e "${destdir}"/bin ]; then
     find "${destdir}"/bin  -type f -exec chmod 750 {} \;
