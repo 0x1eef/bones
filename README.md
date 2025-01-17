@@ -55,6 +55,7 @@ TODO
 * [github.com/@0x1eef](https://github.com/0x1eef/bones)
 * [gitlab.com/@0x1eef](https://gitlab.com/0x1eef/bones)
 * [bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/bones)
+* [hardenedbsd.org/@0x1eef](https://git.hardenedbsd.org/0x1eef/bones)
 
 ## License
 
