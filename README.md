@@ -49,7 +49,12 @@ Install into a target directory
 
 ## Install
 
-TODO
+bones can be installed directly via git:
+
+    user@localhost$ git clone https://github.com/0x1eef/bones
+    user@localhost$ cd bones
+    root@localhost# make install
+    root@localhost# make deinstall
 
 ## Sources
 
