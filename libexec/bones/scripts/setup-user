@@ -13,12 +13,25 @@ user="_bones"
 ##
 # main
 if ! id -u "${user}" > /dev/null 2>&1; then
-    # FIXME: Add OpenBSD support
-    pw useradd       \
-       -n "${user}"   \
-       -c "bones user" \
-       -M 750           \
-       -m                \
-       -s /sbin/nologin
+    if which pw > /dev/null 2>&1; then
+        pw useradd       \
+           -n "${user}"   \
+           -c "bones user" \
+           -M 750           \
+           -m                \
+           -s /sbin/nologin
+    elif which useradd > /dev/null 2>&1; then
+        useradd \
+            -d /home/"${user}" \
+            -v \
+            -m \
+            -s /sbin/nologin \
+            "${user}"
+        chmod 750 /home/"${user}"
+    else
+        printerr "$(uname) is not supported"
+        exit 1
+    fi
+
 fi
 printok "add user"
