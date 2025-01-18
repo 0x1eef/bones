@@ -6,22 +6,27 @@ set -e
 destdir="${1}"
 user="${2}"
 group="${3}"
+libexec="$(dirname "${0}")/.."
+
+##
+# functions
+. "${libexec}"/functions/print.sh
 
 ##
 # main
 if [ -e "${destdir}" ]; then
     chmod 750 "${destdir}"
-    echo "bones: chmod 750 ${destdir}"
+    printok "chmod 750 ${destdir}"
     chown -R "${user}":"${group}" "${destdir}"
-    echo "bones: chown -R ${user}:${group} ${destdir}"
+    printok "chown -R ${user}:${group} ${destdir}"
 fi
 if [ -e "${destdir}"/bin ]; then
     find "${destdir}"/bin  -type f -exec chmod 750 {} \;
-    echo "bones: find ${destdir}/bin  -type f -exec chmod 750"
+    printok "find ${destdir}/bin  -type f -exec chmod 750"
 fi
 if [ -e "${destdir}"/.ssh ]; then
     find "${destdir}"/.ssh -type d -exec chmod 700 {} \;
-    echo "bones: find ${destdir}/.ssh -type d -exec chmod 700"
+    printok "find ${destdir}/.ssh -type d -exec chmod 700"
     find "${destdir}"/.ssh -type f -exec chmod 600 {} \;
-    echo "bones: find ${destdir}/.ssh -type f -exec chmod 600"
+    printok "find ${destdir}/.ssh -type f -exec chmod 600"
 fi

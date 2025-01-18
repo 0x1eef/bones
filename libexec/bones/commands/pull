@@ -4,12 +4,17 @@ set -e
 ##
 # vars
 basename="${1}"
+libexec="$(dirname "${0}")/.."
 sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/${basename}"
+
+##
+# functions
+. "${libexec}"/functions/print.sh
 
 ##
 # main
 if [ -z "${basename}" ]; then
-    echo "bones: provide the name of a skeleton"
+    printerr "provide the name of a skeleton"
     exit 1
 fi
 cd "${sourcedir}"

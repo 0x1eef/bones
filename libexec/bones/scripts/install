@@ -6,19 +6,22 @@ set -e
 sourcedir="${1}"
 destdir="${2}"
 file="${3}"
+libexec="$(dirname "${0}")/.."
 tty="/dev/tty"
 dest=""
 temp=""
 
 ##
 # functions
+. "${libexec}"/functions/print.sh
+
 run_install()
 {
     local source="${1}"
     local dest="${2}"
     local mode="644"
     install -m "${mode}" "${source}" "${dest}"
-    echo "bones: install -m ${mode} ${source} ${dest}"
+    printok "install -m ${mode} ${source} ${dest}"
 }
 
 ##
@@ -34,7 +37,7 @@ if [ -e "${dest}" ]; then
         run_install "${temp}" "${dest}"
         rm "${temp}"
     else
-        echo "bones: nothing to do"
+        printok "nothing to do"
     fi
 else
     run_install "${file}" "${dest}"

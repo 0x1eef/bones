@@ -3,22 +3,27 @@
 ##
 # vars
 repourl="${1}"
+libexec="$(dirname "${0}")/.."
 sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/"
 basename="$(basename "${repourl}" .git)"
 
 ##
+# functions
+. "${libexec}"/functions/print.sh
+
+##
 # main
 if [ -z "${repourl}" ]; then
-    echo "bones: provide a repository url"
+    printerr "provide a repository url"
     exit 1
 elif [ ! -e "${sourcedir}" ]; then
     mkdir -m 750 -p "${sourcedir}"
 fi
 
 if git clone "${repourl}" "${sourcedir}"/"${basename}"; then
-    echo "bones: clone complete"
+    printok "clone complete"
 else
     rc="${?}"
-    echo "bones: unexpected clone error"
+    printerr "unexpected clone error"
     exit "${rc}"
 fi

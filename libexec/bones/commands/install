@@ -5,13 +5,15 @@ set -e
 # vars
 basename="${1}"
 destdir="${2}"
+libexec="$(dirname "${0}")/.."
 sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/${basename}"
-libexec=$(realpath "$(dirname "${0}")/..")
 user=$(id -n -u)
 group=$(id -n -g)
 
 ##
 # functions
+. "${libexec}"/functions/print.sh
+
 parse_options()
 {
     while getopts u:g: opt; do
@@ -28,10 +30,10 @@ parse_options()
 ##
 # main
 if [ -z "${basename}" ]; then
-    echo "bones: provide a skeleton or bone"
+    printerr "provide a skeleton or bone"
     exit 1
 elif [ -z "${destdir}" ]; then
-    echo "bones: provide the path to a target"
+    printerr "provide the path to a target"
     exit 1
 elif [ -d "${sourcedir}" ]; then
     shift 2
@@ -40,7 +42,7 @@ elif [ -d "${sourcedir}" ]; then
     sed "s|${sourcedir}/||" |
     while read -r dir; do
         mkdir -m 750 -p "${destdir}"/"${dir}"
-        echo "bones: mkdir -m 750 -p ${destdir}/${dir}"
+        printok "mkdir -m 750 -p ${destdir}/${dir}"
     done
     find "${sourcedir}" -type f -mindepth 1 |
     sed "s|${sourcedir}/||" |
@@ -49,6 +51,6 @@ elif [ -d "${sourcedir}" ]; then
     done
     "${libexec}"/scripts/finalize "${destdir}" "${user}" "${group}"
 else
-    echo "bones: ${sourcedir} is not a directory"
+    printerr "${sourcedir} is not a directory"
     exit 1
 fi
