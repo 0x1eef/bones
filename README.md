@@ -6,7 +6,7 @@ The utility is inspired by a similar concept from UNIX operating
 systems, where a skeleton directory can serve as the basis for
 a user's `${HOME}` directory during the creation of a new user.
 
-bones delegates certain commands to the `_bones` user via the
+bones delegates certain commands to the `_bones` user via then
 [doas(1)](https://man.openbsd.org/doas)
 utility. The user invoking a given command must be a member of
 the `_bones` group in order to use certain commands. The `/home/_bones`
