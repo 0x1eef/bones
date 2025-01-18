@@ -3,7 +3,7 @@ set -e
 
 ##
 # vars
-basename="${1}"
+basename="$(echo "${1}" | sed 's|:|/|')"
 destdir="${2}"
 libexec="$(dirname "${0}")/.."
 sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/${basename}"
