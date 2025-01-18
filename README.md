@@ -6,10 +6,35 @@ The utility is inspired by a similar concept from UNIX operating
 systems, where a skeleton directory can serve as the basis for
 a user's `${HOME}` directory during the creation of a new user.
 
-At the time of writing this software is in the early stages of
-development, and probably only works on BSD-based operating
-systems. There's also plans to use BSD-specific tools in the
-future (namely doas(1)).
+bones delegates certain commands to the `_bones` user via the
+[doas(1)](https://man.openbsd.org/doas)
+utility. The user invoking a given command must be a member of
+the `_bones` group in order to use certain commands. The `/home/_bones`
+directory is where skeletons are stored, and only a superuser
+or a member of the `_bones` group can access that directory.
+See the [Install](#install) and [CLI](#cli) sections for more
+details.
+
+## CLI
+
+#### Commands
+
+* **bones clone** <br>
+Clone into /home/_bones/.local/share/skeleton/. For example:
+
+        user@localhost$ bones clone https://github.com/0x1eef/skeleton
+
+* **bones pull** <br>
+Pull updates. For example:
+
+        user@localhost$ bones pull skeleton
+
+* **bones install** <br>
+Install into a target directory. The install command also takes
+a number of options that determine the ownership of the files
+and directories that are installed. For example:
+
+        user@localhost$ bones install skeleton:bone /target -u <user> -g <group>
 
 ## Concepts
 
@@ -22,9 +47,9 @@ Each directory is considered to be a "bone". When used with
 the `bones install` command, a bone from a skeleton can be
 installed in a way similar to the following example.
 Keep in mind that these concepts are important to understand
-when planning to use this utility:
+when planning to use bones:
 
-    user@localhost$ bones install skeleton/bone <target>
+    user@localhost$ bones install skeleton:bone <target>
 
 #### Conflicts
 
@@ -39,30 +64,9 @@ it is recommended that the user is familiar with how to use it.
 It is generally inuitive to use so the learning curve is not that
 steep.
 
-## CLI
-
-#### Commands
-
-* **bones clone** <br>
-Clone into ${HOME}/.local/share/bones/. For example:
-
-        user@localhost$ bones clone https://github.com/0x1eef/skeleton
-
-* **bones pull** <br>
-Pull updates. For example:
-
-        user@localhost$ bones pull skeleton
-
-* **bones install** <br>
-Install into a target directory. The install command also takes
-a number of options that determine the ownership of the files
-and directories that are installed. For example:
-
-        user@localhost$ bones install skeleton/bone /target -u <user> -g <group>
-
 ## Install
 
-bones can be installed directly via git:
+bones can be installed directly via git.
 
     user@localhost$ git clone https://github.com/0x1eef/bones
     user@localhost$ cd bones
