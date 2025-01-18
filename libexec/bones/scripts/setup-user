@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+libexec="$(dirname "$0")"/..
+user="_bones"
+
+##
+# functions
+. "${libexec}"/functions/print.sh
+
+##
+# main
+if ! id -u "${user}" > /dev/null 2>&1; then
+    # FIXME: Add OpenBSD support
+    pw useradd       \
+       -n "${user}"   \
+       -c "bones user" \
+       -M 750           \
+       -m                \
+       -s /sbin/nologin
+fi
+printok "add user"

@@ -1,11 +1,13 @@
 #!/bin/sh
+set -e
 
 ##
 # vars
 repourl="${1}"
 libexec="$(dirname "${0}")/.."
-sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/"
+sourcedir="/home/_bones/.local/share"
 basename="$(basename "${repourl}" .git)"
+git="${libexec}"/scripts/git
 
 ##
 # functions
@@ -17,10 +19,10 @@ if [ -z "${repourl}" ]; then
     printerr "provide a repository url"
     exit 1
 elif [ ! -e "${sourcedir}" ]; then
-    mkdir -m 750 -p "${sourcedir}"
+    "${libexec}"/scripts/mkdir -m 750 -p "${sourcedir}"
 fi
 
-if git clone "${repourl}" "${sourcedir}"/"${basename}"; then
+if "${git}" clone "${repourl}" "${sourcedir}"/"${basename}"; then
     printok "clone complete"
 else
     rc="${?}"

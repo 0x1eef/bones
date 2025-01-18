@@ -22,6 +22,12 @@ case "${command}" in
         "${libexec}"/commands/install "${@}"
         exit "${?}"
         ;;
+    "setup")
+        "${libexec}"/commands/setup "${@}"
+        ;;
+    "teardown")
+        "${libexec}"/commands/teardown "${@}"
+        ;;
     *)
         printf "Usage: bones COMMAND ARGUMENTS [OPTIONS]\n"
         printf "\n"
@@ -29,6 +35,9 @@ case "${command}" in
         printf "  clone       Clone a skeleton\n"
         printf "  pull        Pull skeleton updates\n"
         printf "  install     Install into a target directory\n"
+        printf "\n"
+        printf "  setup       setup bones\n"
+        printf "  teardown    teardown bones (reverse setup)\n"
         exit 1
         ;;
 esac

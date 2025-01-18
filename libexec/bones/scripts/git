@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+localbase="${LOCALBASE:-/usr/local}"
+user="_bones"
+
+##
+# main
+doas -u "${user}" -n -- "${localbase}"/bin/git "${@}"
+exit "${?}"

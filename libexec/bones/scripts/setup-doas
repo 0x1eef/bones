@@ -1,0 +1,45 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+localbase="$(dirname "${0}")"/../../..
+libexec="$(dirname "$0")"/..
+sharedir="${localbase}"/share/bones
+src="${sharedir}"/doas.conf
+dest=""
+
+##
+# functions
+. "${libexec}"/functions/print.sh
+
+get_dest()
+{
+    if [ -e "/etc/doas.conf" ]; then
+        echo "/etc/doas.conf"
+    else
+        echo "${LOCALBASE:-/usr/local}"/etc/doas.conf
+    fi
+}
+
+##
+# main
+dest=$(get_dest)
+if [ -e "${dest}" ]; then
+    # shellcheck disable=SC2002
+    cat "${src}" |
+    while read -r line; do
+        if grep -q "${line}" "${dest}"; then
+            continue
+        fi
+        echo "${line}" >> "${dest}"
+        break
+    done
+else
+    install -m 600 \
+            -o root \
+            -g wheel \
+            "${src}"  \
+            "${dest}"
+fi
+printok "add ${dest} (double check it!)"

@@ -5,7 +5,8 @@ set -e
 # vars
 basename="${1}"
 libexec="$(dirname "${0}")/.."
-sourcedir="${BONES_HOME:-${HOME}/.local/share}/bones/${basename}"
+sourcedir="/home/_bones/.local/share/${basename}"
+branch=$("${libexec}"/scripts/git branch --show-current)
 
 ##
 # functions
@@ -18,4 +19,4 @@ if [ -z "${basename}" ]; then
     exit 1
 fi
 cd "${sourcedir}"
-git pull --rebase origin "$(git branch --show-current)"
+"${libexec}"/scripts/git pull --rebase origin "${branch}"

@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+##
+# vars
+user="_bones"
+
+##
+# main
+doas -u "${user}" -n -- /bin/mkdir "${@}"
+exit "${?}"
