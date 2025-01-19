@@ -19,14 +19,14 @@ if ! id -u "${user}" > /dev/null 2>&1; then
            -c "bones user" \
            -M 750           \
            -m                \
-           -s /sbin/nologin
+           -s /sbin/nologin > /dev/null 2>&1
     elif which useradd > /dev/null 2>&1; then
         useradd \
             -d /home/"${user}" \
             -v \
             -m \
             -s /sbin/nologin \
-            "${user}"
+            "${user}" > /dev/null 2>&1
         chmod 750 /home/"${user}"
     else
         printerr "$(uname) is not supported"

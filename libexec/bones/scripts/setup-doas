@@ -15,7 +15,7 @@ dest=""
 
 get_dest()
 {
-    if [ -e "/etc/doas.conf" ]; then
+    if [ "$(uname)" = "OpenBSD" ]; then
         echo "/etc/doas.conf"
     else
         echo "${LOCALBASE:-/usr/local}"/etc/doas.conf

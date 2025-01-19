@@ -13,10 +13,19 @@ user="_bones"
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    pw userdel  -n "${user}"  > /dev/null 2>&1 || true
-    pw groupdel -n "${user}"  > /dev/null 2>&1 || true
-    rm -rf /home/"${user:?}"/ > /dev/null 2>&1 || true
-    printok "teardown complete"
+    if which pw > /dev/null 2>&1; then
+        pw userdel  -n "${user}"  > /dev/null 2>&1 || true
+        pw groupdel -n "${user}"  > /dev/null 2>&1 || true
+        rm -rf /home/"${user:?}"/ > /dev/null 2>&1 || true
+    elif which userdel > /dev/null 2>&1; then
+        userdel  -r "${user}"  > /dev/null 2>&1 || true
+        groupdel -r "${user}"  > /dev/null 2>&1 || true
+        rm -rf /home/"${user:?}"/ > /dev/null 2>&1 || true
+    else
+        printerr "$(uname) is not supported"
+        exit 1
+    fi
+   printok "teardown complete"
 else
     printerr "you must be root"
     exit 1
