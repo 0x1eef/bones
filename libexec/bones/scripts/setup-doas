@@ -33,7 +33,6 @@ if [ -e "${dest}" ]; then
             continue
         fi
         echo "${line}" >> "${dest}"
-        break
     done
 else
     install -m 600 \
