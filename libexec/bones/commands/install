@@ -6,7 +6,7 @@ set -e
 basename="$(echo "${1}" | sed 's|:|/|')"
 destdir="${2}"
 libexec="$(dirname "${0}")/.."
-sourcedir="/home/_bones/.local/share"
+sourcedir="/home/_bones/.local/share/${basename}"
 user="$(id -n -u)"
 group="$(id -n -g)"
 
