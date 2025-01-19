@@ -4,9 +4,9 @@ LIBEXECDIR = $(PREFIX)/libexec/bones
 SHAREDIR = $(PREFIX)/share/bones
 
 install:
-	@find bin/ libexec/ share/ -type d -exec install -v -d $(PREFIX)/"{}" \;
-	@find bin/ libexec/ -type f -exec install -v -m 0755 "{}" $(PREFIX)/"{}" \;
-	@find share/ -type f -exec install -v -m 0644 "{}" $(PREFIX)/"{}" \;
+	@find bin/ libexec/ share/ -type d -exec install -d $(PREFIX)/"{}" \;
+	@find bin/ libexec/ -type f -exec install -m 0755 "{}" $(PREFIX)/"{}" \;
+	@find share/ -type f -exec install -m 0644 "{}" $(PREFIX)/"{}" \;
 
 deinstall:
 	rm -rf $(BINDIR)/bones
