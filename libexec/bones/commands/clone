@@ -22,6 +22,7 @@ elif [ ! -e "${sourcedir}" ]; then
     "${libexec}"/scripts/mkdir -m 750 -p "${sourcedir}"
 fi
 
+cd "${sourcedir}"
 if "${git}" clone "${repourl}" "${sourcedir}"/"${basename}"; then
     printok "clone complete"
 else
