@@ -34,7 +34,7 @@ Install into a target directory. The install command also takes
 a number of options that determine the ownership of the files
 and directories that are installed. For example:
 
-        bones install skeleton:bone /target -u <user> -g <group>
+        bones install skeleton:dirname /target -u <user> -g <group>
 
 ## Concepts
 
