@@ -6,7 +6,7 @@ set -e
 basename="${1}"
 libexec="$(dirname "${0}")/.."
 sourcedir="/home/_bones/.local/share/${basename}"
-branch=$("${libexec}"/scripts/git branch --show-current)
+branch=""
 
 ##
 # functions
@@ -17,6 +17,8 @@ branch=$("${libexec}"/scripts/git branch --show-current)
 if [ -z "${basename}" ]; then
     printerr "provide the name of a skeleton"
     exit 1
+else
+    cd "${sourcedir}"
+    branch=$("${libexec}"/scripts/git branch --show-current)
+    "${libexec}"/scripts/git pull --rebase origin "${branch}"
 fi
-cd "${sourcedir}"
-"${libexec}"/scripts/git pull --rebase origin "${branch}"
