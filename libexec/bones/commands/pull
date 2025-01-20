@@ -17,6 +17,9 @@ branch=""
 if [ -z "${basename}" ]; then
     printerr "provide the name of a skeleton"
     exit 1
+elif [ ! -d "${sourcedir}" ]; then
+    printerr "${sourcedir} is not a directory"
+    exit 1
 else
     cd "${sourcedir}"
     branch=$("${libexec}"/scripts/git branch --show-current)
