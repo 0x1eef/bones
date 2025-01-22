@@ -1,20 +1,19 @@
 ## About
 
-The bones utility is written in POSIX shell and it can clone,
+The bones utility is written in POSIX shell and can clone,
 update, and install skeletons derived from a git repository.
-The utility is inspired by a similar concept from UNIX operating
-systems, where a skeleton directory can serve as the basis for
-a user's `${HOME}` directory during the creation of a new user.
+It is inspired by a similar concept from UNIX operating systems,
+where a skeleton directory serves as the basis for a user's
+`${HOME}` directory during the creation of a new user.
 
-The bones utility delegates most of its commands to the `_bones`
-user via the
-[doas(1)](https://man.openbsd.org/doas)
-utility. The user invoking a given command must be a member of
-the `_bones` group in order to use most commands. The `/home/_bones`
+Most commands in bones are delegated to the `_bones` user
+via the [doas(1)](https://man.openbsd.org/doas) utility.
+The user invoking a command must be a member of the `_bones`
+group to use the clone and pull commands. The `/home/_bones`
 directory is where skeletons are stored, and only a superuser
-or a member of the `_bones` group can access them. Most of the 
-setup is automated. See the [Install](#install), [CLI](#cli) 
-and [Concepts](#concepts) sections for more details.
+or a member of the `_bones` group can access them.
+Most of the setup is automated. See the [Install](#install),
+[CLI](#cli) and [Concepts](#concepts) sections for more details.
 
 ## CLI
 
