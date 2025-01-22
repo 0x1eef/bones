@@ -1,12 +1,12 @@
 ## About
 
-bones is a utility written in POSIX shell that can clone,
+Bones is a utility written in POSIX shell that can clone,
 update, and install skeletons derived from a git repository.
 The utility is inspired by a similar concept from UNIX operating
 systems, where a skeleton directory can serve as the basis for
 a user's `${HOME}` directory during the creation of a new user.
 
-bones delegates most of its commands to the `_bones` user via the
+Bones delegates most of its commands to the `_bones` user via the
 [doas(1)](https://man.openbsd.org/doas)
 utility. The user invoking a given command must be a member of
 the `_bones` group in order to use most commands. The `/home/_bones`
@@ -69,8 +69,8 @@ steep.
 
 #### Clone
 
-The first step is to clone the repository. Afterwards bones can
-be installed (and deinstalled) through `make`:
+The first step is to clone the repository. <br>
+Afterwards bones can be installed (and deinstalled) through `make`:
 
     user@localhost$ git clone https://github.com/0x1eef/bones
     user@localhost$ cd bones
