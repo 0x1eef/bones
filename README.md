@@ -20,7 +20,7 @@ Most of the setup is automated. See the [Install](#install),
 #### Commands
 
 * bones clone <br>
-Clone into `/home/_bones/.local/share/skeleton/` <br>
+Clone into `/home/_bones/.local/share/<reponame>/` <br>
 
 * bones pull <br>
 Pull updates <br>
