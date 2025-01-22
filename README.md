@@ -19,22 +19,16 @@ Most of the setup is automated. See the [Install](#install),
 
 #### Commands
 
-* **bones clone** <br>
-Clone into /home/_bones/.local/share/skeleton/. For example:
+* bones clone <br>
+Clone into `/home/_bones/.local/share/skeleton/` <br>
 
-        bones clone https://github.com/0x1eef/skeleton
+* bones pull <br>
+Pull updates <br>
 
-* **bones pull** <br>
-Pull updates. For example:
-
-        bones pull skeleton
-
-* **bones install** <br>
+* bones install <br>
 Install into a target directory. The install command also takes
 a number of options that determine the ownership of the files
-and directories that are installed. For example:
-
-        bones install skeleton:dirname /target -u <user> -g <group>
+and directories that are installed <br>
 
 ## Concepts
 
