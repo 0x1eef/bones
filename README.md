@@ -82,9 +82,9 @@ the creation of `/home/_bones`. A user should also be added to the
 `_bones` group. The process is mostly automated:
 
     root@localhost# bones setup
-    root@localhost# pw usermod <user> -g _bones # FreeBSD
-    root@localhost# usermod -G _bones <user>    # OpenBSD
-    root@localhost# bones teardown              # Optional - reverse 'bones setup'
+    root@localhost# pw groupmod _bones -g <user> # FreeBSD
+    root@localhost# usermod -G _bones <user>     # OpenBSD
+    root@localhost# bones teardown               # Optional - reverse 'bones setup'
 
 ## Sources
 
