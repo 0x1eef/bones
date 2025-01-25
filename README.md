@@ -4,15 +4,15 @@ The bones utility is written in POSIX shell and can clone,
 update, and install skeletons derived from a git repository.
 It is inspired by a similar concept from UNIX operating systems,
 where a skeleton directory can serve as the basis for a new user's
-`${HOME}` directory.
+${HOME} directory.
 
-Most commands in bones are delegated to the `_bones` user
+Most commands in bones are delegated to the _bones user
 via the [doas(1)](https://man.openbsd.org/doas) utility.
-The user running a command delegated to the `_bones` user must
-be a member of the `_bones` group.
+The user running a command delegated to the _bones user must
+be a member of the _bones group.
 
-The `/home/_bones` directory is where skeletons are stored,
-and only a superuser or a member of the `_bones` group can
+The /home/_bones directory is where skeletons are stored,
+and only a superuser or a member of the _bones group can
 access them. Most of the setup is automated. See the [Install](#install),
 [CLI](#cli) and [Concepts](#concepts) sections for more details.
 
@@ -21,12 +21,12 @@ access them. Most of the setup is automated. See the [Install](#install),
 #### Commands
 
 * bones clone <br>
-Clones into `/home/_bones/.local/share/<reponame>/` <br>
-Requires membership of the `_bones` group <br>
+Clones into /home/_bones/.local/share/&lt;reponame&gt;/ <br>
+Requires membership of the _bones group <br>
 
 * bones pull <br>
 Pulls updates <br>
-Requires membership of the `_bones` group <br>
+Requires membership of the _bones group <br>
 
 * bones install <br>
 Installs into a target directory
@@ -35,7 +35,7 @@ Installs into a target directory
 
 #### Terminology
 
-In the terminology of the bones utility, "a skeleton" refers
+In the context of the bones utility, a "skeleton" refers
 to a cloned git repository. Within the cloned git repository,
 there can be one or more directories at the top-level.
 Each directory is considered to be a specific kind of skeleton,
@@ -67,24 +67,28 @@ steep.
 #### Clone
 
 The first step is to clone the repository. <br>
-Afterwards bones can be installed (and deinstalled) through `make`:
+Afterwards bones can be installed (and deinstalled) through make:
 
-    user@localhost$ git clone https://github.com/0x1eef/bones
-    user@localhost$ cd bones
-    root@localhost# make install
-    root@localhost# make deinstall
+```sh
+git clone https://github.com/0x1eef/bones
+cd bones
+doas -u root -- make install
+doas -u root -- make deinstall
+```
 
 #### Configuration
 
 After installation is complete the bones environment should be setup.
-That involves the creation of the `_bones` user and group, as well as
-the creation of `/home/_bones`. A user should also be added to the
-`_bones` group. The process is mostly automated:
+That involves the creation of the _bones user and group, as well as
+the creation of /home/_bones. A user should also be added to the
+_bones group. The process is mostly automated:
 
-    root@localhost# bones setup
-    root@localhost# pw groupmod _bones -m <user> # FreeBSD
-    root@localhost# usermod -G _bones <user>     # OpenBSD
-    root@localhost# bones teardown               # Optional - reverse 'bones setup'
+```sh
+doas -u root -- bones setup
+doas -u root -- pw groupmod _bones -m <user> # FreeBSD
+doas -u root -- usermod -G _bones <user>     # OpenBSD
+doas -u root -- bones teardown               # Optional - reverse 'bones setup'
+```
 
 ## Sources
 
