@@ -2,7 +2,7 @@
 
 The bones utility is written in POSIX shell and can clone,
 update, and install skeletons derived from a git repository.
-It is inspired by a similar concept from UNIX operating systems,
+It is inspired by a similar concept from UNIX operating systems &mdash;
 where a skeleton directory can serve as the basis for a new user's
 ${HOME} directory.
 
