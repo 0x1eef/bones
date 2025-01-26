@@ -6,27 +6,27 @@ It is inspired by a similar concept from UNIX operating systems,
 where a skeleton directory can serve as the basis for a new user's
 ${HOME} directory.
 
-Most commands in bones are delegated to the _bones user
+Most commands in bones are delegated to the '\_bones' user
 via the [doas(1)](https://man.openbsd.org/doas) utility.
-The user running a command delegated to the _bones user must
-be a member of the _bones group.
-
+The user running a command that is delegated to the
+'\_bones' user must be a member of the '\_bones' group.
 The /home/_bones directory is where skeletons are stored,
-and only a superuser or a member of the _bones group can
-access them. Most of the setup is automated. See the [Install](#install),
-[CLI](#cli) and [Concepts](#concepts) sections for more details.
+and only a superuser or a member of the '\_bones' group can
+access them. Most of the setup is automated. See the
+[Install](#install), [CLI](#cli) and [Concepts](#concepts)
+sections for more details.
 
 ## CLI
 
 #### Commands
 
 * bones clone <br>
-Clones into /home/_bones/.local/share/&lt;reponame&gt;/ <br>
-Requires membership of the _bones group <br>
+Clones into /home/_bones/.local/share/&lt;reponame&gt; <br>
+Requires membership of the '\_bones' group <br>
 
 * bones pull <br>
 Pulls updates <br>
-Requires membership of the _bones group <br>
+Requires membership of the '\_bones' group <br>
 
 * bones install <br>
 Installs into a target directory
@@ -53,9 +53,7 @@ While not neccessarily a concept, it is common enough to be worth
 a mention. Merge conflicts can occur when installing an updated
 directory from a given skeleton. It is expected that the user
 will manually resolve those conflicts as part of the install
-process.
-
-The
+process. The
 [sdiff(1)](https://man.freebsd.org/cgi/man.cgi?sdiff)
 utility is used to help the user resolve merge conflicts, and
 it is recommended that the user is familiar with how to use it.
@@ -79,9 +77,9 @@ doas -u root -- make deinstall
 #### Configuration
 
 After installation is complete the bones environment should be setup.
-That involves the creation of the _bones user and group, as well as
-the creation of /home/_bones. A user should also be added to the
-_bones group. The process is mostly automated:
+That involves the creation of the '\_bones' user and group, as well as
+the creation of /home/\_bones. A user should also be added to the
+'\_bones' group. The process is mostly automated:
 
 ```sh
 doas -u root -- bones setup
