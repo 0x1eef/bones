@@ -1,0 +1,73 @@
+.Dd January 2025
+.Dt BONES 1
+.Os
+.Sh NAME
+.Nm bones
+.Nd clone, update, and install skeletons from a git repository
+.Sh SYNOPSIS
+.br
+.Nm bones setup
+.Nm bones teardown
+.Nm bones clone
+.Nm bones pull
+.Nm bones install
+.Sh DESCRIPTION
+.Nm bones
+is a utility that can clone, update and install skeletons derived
+from a git repsoitory. It is inspired by a similar concept from
+UNIX operating systems, where a skeleton directory can serve as
+the basis for a new user's ${HOME} directory.
+.sp
+Most commands in bones are delegated to the '\_bones' user
+via the doas(1) utility. The user running a command
+that is delegated to the '\_bones' user must be a member
+of the '\_bones' group. The /home/_bones directory is where
+skeletons are stored, and only a superuser or a member of
+the '\_bones' group can access them.
+.Sh SETUP
+.sp
+.sp
+.Nm bones setup
+.br
+Setup bones for the first time
+.br
+This command requires root privileges
+.Pp
+.Nm bones teardown
+.br
+Reverse the changes made by 'bones setup'
+.br
+This command requires root privileges
+.Pp
+.Nm pw groupmod _bones -m <user>
+.br
+Append a user to the '_bones' group
+.br
+This command requires root privileges
+.Pp
+.Sh GENERAL
+.sp
+.sp
+.Nm bone clone
+.br
+Clones into /home/_bones/.local/share/<reponame>
+.br
+This command is delegated to the '_bones' user and
+limited to members of the '_bones' group
+.Pp
+.Nm bones pull
+.br
+Pulls updates
+.br
+This command is delegated to the '_bones' user and
+limited to members of the '_bones' group
+.Pp
+.Nm bones install
+.br
+Installs into a target directory
+.sp
+.Sh AUTHORS
+The
+.Nm bones
+utility and this manual page were written by
+0x1eef <0x1eef@protonmail.com>.
