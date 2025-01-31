@@ -21,7 +21,7 @@ sections for more details.
 #### Commands
 
 * bones clone <br>
-Clones into /home/_bones/.local/share/&lt;reponame&gt; <br>
+Clones into /home/_bones/.local/share/skeletons <br>
 Requires membership of the '\_bones' group <br>
 
 * bones pull <br>
@@ -35,17 +35,17 @@ Installs into a target directory
 
 #### Terminology
 
-In the context of the bones utility, a "skeleton" refers
-to a cloned git repository. Within the cloned git repository,
+In the context of the bones utility, a git repository is referred
+as a collection of skeletons. Within the cloned git repository,
 there can be one or more directories at the top-level.
-Each directory is considered to be a specific kind of skeleton,
+Each directory is considered to be a skeleton in its own right,
 and a cloned repository can contain many of them.
 
 For example, one directory could be for unprivileged users and
 another directory could be for a superuser. When used with the
 "bones install" command, a directory from a skeleton can be
 installed in a way similar to:
-`bones install skeleton:dirname /target`.
+`bones install dirname /target`.
 
 #### Conflicts
 

@@ -6,7 +6,7 @@ set -e
 repourl="${1}"
 libexec="$(dirname "${0}")/.."
 sourcedir="/home/_bones/.local/share"
-basename="$(basename "${repourl}" .git)"
+basename="skeletons"
 git="${libexec}"/scripts/git
 
 ##

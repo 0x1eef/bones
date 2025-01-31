@@ -3,8 +3,8 @@ set -e
 
 ##
 # vars
-basename="${1}"
 libexec="$(dirname "${0}")/.."
+basename="skeletons"
 sourcedir="/home/_bones/.local/share/${basename}"
 branch=""
 
@@ -14,10 +14,7 @@ branch=""
 
 ##
 # main
-if [ -z "${basename}" ]; then
-    printerr "provide the name of a skeleton"
-    exit 1
-elif [ ! -d "${sourcedir}" ]; then
+if [ ! -d "${sourcedir}" ]; then
     printerr "${sourcedir} is not a directory"
     exit 1
 else
