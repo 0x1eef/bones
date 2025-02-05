@@ -21,12 +21,22 @@ if ! id -u "${user}" > /dev/null 2>&1; then
            -m                \
            -s /sbin/nologin
     elif which useradd > /dev/null 2>&1; then
-        useradd               \
-            -d /home/"${user}" \
-            -v                  \
-            -m                   \
-            -s /sbin/nologin      \
-            "${user}"
+        if [ "$(uname)" = "Linux" ]; then
+            useradd               \
+                -d /home/"${user}" \
+                -c "bones user"     \
+                -m                   \
+                -s /sbin/nologin      \
+                "${user}"
+        else
+            # Hello (Net|Open)BSD
+            useradd               \
+                -d /home/"${user}" \
+                -v                  \
+                -m                   \
+                -s /sbin/nologin      \
+                "${user}"
+        fi
         chmod 750 /home/"${user}"
     else
         printerr "$(uname) is not supported"

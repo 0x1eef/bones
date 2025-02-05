@@ -6,25 +6,35 @@ set -e
 localbase="$(dirname "${0}")"/../../..
 libexec="$(dirname "$0")"/..
 sharedir="${localbase}"/share/bones
-src="${sharedir}"/doas.conf
+src=""
 dest=""
 
 ##
 # functions
 . "${libexec}"/functions/print.sh
 
-get_dest()
+choose_source()
 {
-    if [ "$(uname)" = "OpenBSD" ]; then
-        echo "/etc/doas.conf"
+    if [ "$(uname)" = "Linux" ]; then
+        echo "${sharedir}"/Linux/doas.conf
     else
+        echo "${sharedir}"/BSD/doas.conf
+    fi
+}
+
+choose_destination()
+{
+    if [ "$(uname)" = "FreeBSD" ]; then
         echo "${LOCALBASE:-/usr/local}"/etc/doas.conf
+    else
+        echo "/etc/doas.conf"
     fi
 }
 
 ##
 # main
-dest=$(get_dest)
+src=$(choose_source)
+dest=$(choose_destination)
 if [ -e "${dest}" ]; then
     # shellcheck disable=SC2002
     cat "${src}" |

@@ -35,12 +35,12 @@ Installs into a target directory
 
 #### Terminology
 
-In the context of the bones utility, a git repository is referred
+In the context of the bones utility, a git repository is defined
 as a collection of skeletons. Within the cloned git repository,
 there can be one or more directories at the top-level.
 Each directory is considered to be a skeleton in its own right,
 and a cloned repository can contain many of them. **It is important
-to understand that there can only be one git repository, and that
+to realize that there can only be one git repository, and that
 the git repository can have many skeletons.**
 
 For example, one directory could be for unprivileged users and
@@ -61,6 +61,20 @@ utility is used to help the user resolve merge conflicts, and
 it is recommended that the user is familiar with how to use it.
 It is generally inuitive to use so the learning curve is not that
 steep.
+
+## Platforms
+
+The following platforms have been tested and are known to work:
+
+* OpenBSD
+* FreeBSD (and its forks)
+* Arch Linux
+
+The following platforms remain untested but might work:
+
+* MacOS
+* NetBSD
+* Linux distros other than Arch Linux
 
 ## Install
 
@@ -87,6 +101,7 @@ the creation of /home/\_bones. A user should also be added to the
 doas -u root -- bones setup
 doas -u root -- pw groupmod _bones -m <user> # FreeBSD
 doas -u root -- usermod -G _bones <user>     # OpenBSD
+doas -u root -- usermod -G _bones <user>     # Linux
 doas -u root -- bones teardown               # Optional - reverse 'bones setup'
 ```
 

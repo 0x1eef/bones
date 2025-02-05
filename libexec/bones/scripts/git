@@ -5,8 +5,21 @@ set -e
 # vars
 localbase="${LOCALBASE:-/usr/local}"
 user="_bones"
+bindir=""
+
+##
+# functions
+choose_bindir()
+{
+    if [ "$(uname)" = "Linux" ]; then
+        echo "/bin"
+    else
+        echo "${localbase}"/bin
+    fi
+}
 
 ##
 # main
-doas -u "${user}" -n -- "${localbase}"/bin/git "${@}"
+bindir=$(choose_bindir)
+doas -u "${user}" -n -- "${bindir}"/git "${@}"
 exit "${?}"
