@@ -1,12 +1,10 @@
-
 #!/bin/sh
 set -e
 
 ##
 # globals
-localbase="${LOCALBASE:-/usr/local}"
+localbase="$(dirname "${0}")/../../.."
 user="_bones"
-bindir=""
 
 ##
 # functions

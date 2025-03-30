@@ -19,9 +19,7 @@ libexec="$(dirname "${0}")/.."
 if [ -e "${destination}" ]; then
     if [ "$(cat "${destination}")" = "" ]; then
         install -m 644 "${source}" "${destination}"
-    elif cmp -s "${destination}" "${source}"; then
-        printok "nothing to do"
-    else
+    elif ! cmp -s "${destination}" "${source}"; then
         temp=$(mktemp)
         sdiff -o "${temp}" "${source}" "${destination}" < "/dev/tty" || true
         install -m 644 "${temp}" "${destination}"
