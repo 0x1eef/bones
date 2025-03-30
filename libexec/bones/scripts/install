@@ -3,42 +3,30 @@ set -e
 
 ##
 # globals
-sourcedir="${1}"
+repodir="${1}"
 destdir="${2}"
 file="${3}"
-libexec="$(dirname "${0}")/.."
-tty="/dev/tty"
-dest=""
-temp=""
+destination="${destdir}"/"${file}"
+source="${repodir}"/"${file}"
 
 ##
 # functions
+libexec="$(dirname "${0}")/.."
 . "${libexec}"/functions/print.sh
-
-run_install()
-{
-    local source="${1}"
-    local dest="${2}"
-    local mode="644"
-    install -m "${mode}" "${source}" "${dest}"
-    printok "install -m ${mode} ${source} ${dest}"
-}
 
 ##
 # main
-dest="${destdir}"/"${file}"
-file="${sourcedir}"/"${file}"
-if [ -e "${dest}" ]; then
-    if [ "$(cat "${dest}")" = "" ]; then
-        run_install "${file}" "${dest}"
-    elif ! cmp -s "${dest}" "${file}"; then
-        temp=$(mktemp)
-        sdiff -o "${temp}" "${file}" "${dest}" < "${tty}" || true
-        run_install "${temp}" "${dest}"
-        rm "${temp}"
-    else
+if [ -e "${destination}" ]; then
+    if [ "$(cat "${destination}")" = "" ]; then
+        install -m 644 "${source}" "${destination}"
+    elif cmp -s "${destination}" "${source}"; then
         printok "nothing to do"
+    else
+        temp=$(mktemp)
+        sdiff -o "${temp}" "${source}" "${destination}" < "/dev/tty" || true
+        install -m 644 "${temp}" "${destination}"
+        rm "${temp}"
     fi
 else
-    run_install "${file}" "${dest}"
+    install -m 644 "${source}" "${destination}"
 fi
