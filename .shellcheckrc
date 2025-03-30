@@ -1,3 +1,5 @@
 disable=SC3043
 disable=SC2174
 disable=SC1091
+disable=SC3046
+disable=SC2002

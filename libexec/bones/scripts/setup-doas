@@ -6,8 +6,6 @@ set -e
 localbase="$(dirname "${0}")"/../../..
 libexec="$(dirname "$0")"/..
 sharedir="${localbase}"/share/bones
-source=""
-destination=""
 
 ##
 # functions
@@ -34,7 +32,6 @@ destination()
 ##
 # main
 if [ -e "$(destination)" ]; then
-    # shellcheck disable=SC2002
     cat "$(source)" |
     while read -r line; do
         if grep -q "${line}" "$(destination)"; then
