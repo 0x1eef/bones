@@ -13,7 +13,7 @@ bindir()
     if [ "$(uname)" = "Linux" ]; then
         echo "/bin"
     else
-        echo "${localbase}"/bin
+        echo $(realpath "${localbase}")/bin
     fi
 }
 
