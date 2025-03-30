@@ -27,6 +27,30 @@ parse_options()
     done
 }
 
+create_directories()
+{
+    find "${repodir}" -type d -mindepth 1 |
+    sed "s|${repodir}/||" |
+    while read -r dir; do
+        mkdir -m 750 -p "${destdir}"/"${dir}"
+        printok "mkdir -m 750 -p ${destdir}/${dir}"
+    done
+}
+
+install_files()
+{
+    find "${repodir}" -type f -mindepth 1 |
+    sed "s|${repodir}/||" |
+    while read -r file; do
+        "${libexec}"/scripts/install "${repodir}" "${destdir}" "${file}"
+    done
+}
+
+set_permissions()
+{
+    "${libexec}"/scripts/set-permissions "${destdir}" "${user}" "${group}"
+}
+
 ##
 # main
 if [ -z "${destdir}" ]; then
@@ -35,18 +59,9 @@ if [ -z "${destdir}" ]; then
 elif [ -d "${repodir}" ]; then
     shift 2
     parse_options "${@}"
-    find "${repodir}" -type d -mindepth 1 |
-    sed "s|${repodir}/||" |
-    while read -r dir; do
-        mkdir -m 750 -p "${destdir}"/"${dir}"
-        printok "mkdir -m 750 -p ${destdir}/${dir}"
-    done
-    find "${repodir}" -type f -mindepth 1 |
-    sed "s|${repodir}/||" |
-    while read -r file; do
-        "${libexec}"/scripts/install "${repodir}" "${destdir}" "${file}"
-    done
-    "${libexec}"/scripts/finalize "${destdir}" "${user}" "${group}"
+    create_directories
+    install_files
+    set_permissions
 else
     printerr "${repodir} is not a directory"
     exit 1
