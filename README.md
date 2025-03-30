@@ -6,12 +6,12 @@ It is inspired by a similar concept from UNIX operating systems &mdash;
 where a skeleton directory can serve as the basis for a new user's
 ${HOME} directory.
 
-Most commands in bones are delegated to the '\_bones' user
+Most commands in bones are delegated to the `_bones` user
 via the [doas(1)](https://man.openbsd.org/doas) utility.
 The user running a command that is delegated to the
-'\_bones' user must be a member of the '\_bones' group.
+`_bones` user must be a member of the `_bones` group.
 The /home/_bones directory is where skeletons are stored,
-and only a superuser or a member of the '\_bones' group can
+and only a superuser or a member of the `_bones` group can
 access them. Most of the setup is automated. See the
 [Install](#install), [CLI](#cli) and [Concepts](#concepts)
 sections for more details.
