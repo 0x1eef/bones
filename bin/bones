@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 command="${1}"
 libexec="$(dirname "${0}")/../libexec/bones"
 
@@ -16,6 +16,10 @@ case "${command}" in
         ;;
     "pull")
         "${libexec}"/commands/pull "${@}"
+        exit "${?}"
+        ;;
+    "rm")
+        "${libexec}"/commands/rm "${@}"
         exit "${?}"
         ;;
     "install")
@@ -34,6 +38,7 @@ case "${command}" in
         printf "Commands\n"
         printf "  clone       Clone a skeleton\n"
         printf "  pull        Pull skeleton updates\n"
+        printf "  rm          Remove the skeleton repository\n"
         printf "  install     Install into a target directory\n"
         printf "\n"
         printf "  setup       setup bones\n"

@@ -2,18 +2,18 @@
 set -e
 
 ##
-# vars
+# globals
 localbase="$(dirname "${0}")"/../../..
 libexec="$(dirname "$0")"/..
 sharedir="${localbase}"/share/bones
-src=""
-dest=""
+source=""
+destination=""
 
 ##
 # functions
 . "${libexec}"/functions/print.sh
 
-choose_source()
+source()
 {
     if [ "$(uname)" = "Linux" ]; then
         echo "${sharedir}"/Linux/doas.conf
@@ -22,7 +22,7 @@ choose_source()
     fi
 }
 
-choose_destination()
+destination()
 {
     if [ "$(uname)" = "FreeBSD" ]; then
         echo "${LOCALBASE:-/usr/local}"/etc/doas.conf
@@ -33,22 +33,20 @@ choose_destination()
 
 ##
 # main
-src=$(choose_source)
-dest=$(choose_destination)
-if [ -e "${dest}" ]; then
+if [ -e "$(destination)" ]; then
     # shellcheck disable=SC2002
-    cat "${src}" |
+    cat "$(source)" |
     while read -r line; do
-        if grep -q "${line}" "${dest}"; then
+        if grep -q "${line}" "$(destination)"; then
             continue
         fi
-        echo "${line}" >> "${dest}"
+        echo "${line}" >> "$(destination)"
     done
 else
     install -m 600 \
             -o root \
             -g wheel \
-            "${src}"  \
-            "${dest}"
+            "$(source)"  \
+            "$(destination)"
 fi
-printok "add ${dest} (double check it!)"
+printok "add $(destination)"

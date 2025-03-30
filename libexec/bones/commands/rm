@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e
+
+##
+# globals
+user="_bones"
+repodir="/home/_bones/.local/share/skeletons"
+libexec="$(dirname "${0}")/.."
+
+##
+# functions
+. "${libexec}"/functions/print.sh
+
+##
+# main
+if [ -e "${repodir}" ]; then
+    printf "bones: are you sure? [y/N] "
+    read -r reply
+    if [ "${reply}" = "y" ]; then
+        doas -u "${user}" -n -- /bin/rm -rf "${repodir}"
+        printok "skeleton repository removed"
+    else
+        printerr "abort"
+    fi
+else
+    printerr "skeleton repository not found"
+fi

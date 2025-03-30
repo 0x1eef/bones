@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 user="_bones"
 
 ##

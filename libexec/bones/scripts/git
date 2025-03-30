@@ -1,15 +1,16 @@
+
 #!/bin/sh
 set -e
 
 ##
-# vars
+# globals
 localbase="${LOCALBASE:-/usr/local}"
 user="_bones"
 bindir=""
 
 ##
 # functions
-choose_bindir()
+bindir()
 {
     if [ "$(uname)" = "Linux" ]; then
         echo "/bin"
@@ -20,6 +21,5 @@ choose_bindir()
 
 ##
 # main
-bindir=$(choose_bindir)
-doas -u "${user}" -n -- "${bindir}"/git "${@}"
+doas -u "${user}" -n -- "$(bindir)"/git "${@}"
 exit "${?}"

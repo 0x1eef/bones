@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 libexec="$(dirname "${0}")/.."
 basename="skeletons"
 sourcedir="/home/_bones/.local/share/${basename}"

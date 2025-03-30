@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 sourcedir="${1}"
 destdir="${2}"
 file="${3}"

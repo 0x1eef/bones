@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 repourl="${1}"
 libexec="$(dirname "${0}")/.."
 sourcedir="/home/_bones/.local/share"

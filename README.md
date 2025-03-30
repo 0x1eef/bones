@@ -28,6 +28,10 @@ Requires membership of the '\_bones' group <br>
 Pulls updates <br>
 Requires membership of the '\_bones' group <br>
 
+* bones rm <br>
+Removes the skeleton repository <br>
+Requires membership of the '\_bones' group <br>
+
 * bones install <br>
 Installs into a target directory
 
