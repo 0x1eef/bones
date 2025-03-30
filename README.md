@@ -43,9 +43,9 @@ In the context of the bones utility, a git repository is defined
 as a collection of skeletons. Within the cloned git repository,
 there can be one or more directories at the top-level.
 Each directory is considered to be a skeleton in its own right,
-and a cloned repository can contain many of them. **It is important
+and a cloned repository can contain many of them. It is important
 to realize that there can only be one git repository, and that
-the git repository can have many skeletons.**
+the git repository can have many skeletons.
 
 For example, one directory could be for unprivileged users and
 another directory could be for a superuser. When used with the
