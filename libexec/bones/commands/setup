@@ -2,18 +2,14 @@
 set -e
 
 ##
-# globals
-libexec="$(dirname "$0")"/..
-
-##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "$0")"/../functions/print.sh
 
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    "${libexec}"/scripts/setup-user
-    "${libexec}"/scripts/setup-doas
+    "$(dirname "$0")"/scripts/setup-user
+    "$(dirname "$0")"/scripts/setup-doas
     printok "setup complete"
 else
     printerr "you must be root"

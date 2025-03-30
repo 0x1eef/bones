@@ -4,12 +4,11 @@ set -e
 ##
 # globals
 localbase="$(dirname "${0}")"/../../..
-libexec="$(dirname "$0")"/..
 sharedir="${localbase}"/share/bones
 
 ##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "$0")"/../functions/print.sh
 
 source()
 {

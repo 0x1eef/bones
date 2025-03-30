@@ -3,12 +3,11 @@ set -e
 
 ##
 # globals
-libexec="$(dirname "$0")"/..
 user="_bones"
 
 ##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "$0")"/../functions/print.sh
 
 ##
 # main

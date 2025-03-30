@@ -3,13 +3,13 @@ set -e
 
 ##
 # globals
-libexec="$(dirname "${0}")/.."
 repodir="/home/_bones/.local/share/skeletons"
+git="$(dirname "${0}")/.."/scripts/git
 branch=""
 
 ##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "${0}")/.."/functions/print.sh
 
 ##
 # main
@@ -18,6 +18,6 @@ if [ ! -d "${repodir}" ]; then
     exit 1
 else
     cd "${repodir}"
-    branch=$("${libexec}"/scripts/git branch --show-current)
-    "${libexec}"/scripts/git pull --rebase origin "${branch}"
+    branch=$("${git}" branch --show-current)
+    "${git}" pull --rebase origin "${branch}"
 fi

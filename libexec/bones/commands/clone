@@ -4,13 +4,13 @@ set -e
 ##
 # globals
 repourl="${1}"
-libexec="$(dirname "${0}")/.."
 repodir="/home/_bones/.local/share/skeletons"
-git="${libexec}"/scripts/git
+git="$(dirname "${0}")/.."/scripts/git
+mkdir="$(dirname "${0}")/.."/scripts/mkdir
 
 ##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "${0}")/.."/functions/print.sh
 
 ##
 # main
@@ -18,7 +18,7 @@ if [ -z "${repourl}" ]; then
     printerr "provide a repository url"
     exit 1
 elif [ ! -e "${repodir}" ]; then
-    "${libexec}"/scripts/mkdir -m 750 -p "${repodir}"
+    "${mkdir}" -m 750 -p "${repodir}"
 fi
 
 cd "${repodir}"

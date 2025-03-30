@@ -3,7 +3,6 @@ set -e
 
 ##
 # globals
-libexec="$(dirname "${0}")/.."
 dirname="${1}"
 destdir="${2}"
 repodir="/home/_bones/.local/share/skeletons/${dirname}"
@@ -12,7 +11,7 @@ group="$(id -n -g)"
 
 ##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "${0}")/.."/functions/print.sh
 
 parse_options()
 {
@@ -42,14 +41,14 @@ install_files()
     find "${repodir}" -type f -mindepth 1 |
     sed "s|${repodir}/||" |
     while read -r file; do
-        "${libexec}"/scripts/install "${repodir}" "${destdir}" "${file}"
+        "$(dirname "${0}")/.."/scripts/install "${repodir}" "${destdir}" "${file}"
     done
     printok "install files"
 }
 
 set_permissions()
 {
-    "${libexec}"/scripts/set-permissions "${destdir}" "${user}" "${group}"
+    "$(dirname "${0}")/.."/scripts/set-permissions "${destdir}" "${user}" "${group}"
     printok "set permissions"
 }
 

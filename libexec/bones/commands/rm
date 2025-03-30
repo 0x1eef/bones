@@ -5,11 +5,10 @@ set -e
 # globals
 user="_bones"
 repodir="/home/_bones/.local/share/skeletons"
-libexec="$(dirname "${0}")/.."
 
 ##
 # functions
-. "${libexec}"/functions/print.sh
+. "$(dirname "${0}")/.."/functions/print.sh
 
 ##
 # main

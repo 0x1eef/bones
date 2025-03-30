@@ -9,8 +9,7 @@ group="${3}"
 
 ##
 # functions
-libexec="$(dirname "${0}")/.."
-. "${libexec}"/functions/print.sh
+. "$(dirname "${0}")/.."/functions/print.sh
 
 ##
 # main
