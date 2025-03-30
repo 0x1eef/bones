@@ -5,8 +5,7 @@ set -e
 # globals
 repourl="${1}"
 libexec="$(dirname "${0}")/.."
-sourcedir="/home/_bones/.local/share"
-basename="skeletons"
+repodir="/home/_bones/.local/share/skeletons"
 git="${libexec}"/scripts/git
 
 ##
@@ -18,12 +17,12 @@ git="${libexec}"/scripts/git
 if [ -z "${repourl}" ]; then
     printerr "provide a repository url"
     exit 1
-elif [ ! -e "${sourcedir}" ]; then
-    "${libexec}"/scripts/mkdir -m 750 -p "${sourcedir}"
+elif [ ! -e "${repodir}" ]; then
+    "${libexec}"/scripts/mkdir -m 750 -p "${repodir}"
 fi
 
-cd "${sourcedir}"
-if "${git}" clone "${repourl}" "${sourcedir}"/"${basename}"; then
+cd "${repodir}"
+if "${git}" clone "${repourl}" "${repodir}"; then
     printok "clone complete"
 else
     rc="${?}"

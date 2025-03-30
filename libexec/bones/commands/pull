@@ -4,8 +4,7 @@ set -e
 ##
 # globals
 libexec="$(dirname "${0}")/.."
-basename="skeletons"
-sourcedir="/home/_bones/.local/share/${basename}"
+repodir="/home/_bones/.local/share/skeletons"
 branch=""
 
 ##
@@ -14,11 +13,11 @@ branch=""
 
 ##
 # main
-if [ ! -d "${sourcedir}" ]; then
-    printerr "${sourcedir} is not a directory"
+if [ ! -d "${repodir}" ]; then
+    printerr "${repodir} is not a directory"
     exit 1
 else
-    cd "${sourcedir}"
+    cd "${repodir}"
     branch=$("${libexec}"/scripts/git branch --show-current)
     "${libexec}"/scripts/git pull --rebase origin "${branch}"
 fi
