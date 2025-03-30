@@ -20,7 +20,6 @@ if [ -z "${repourl}" ]; then
 elif [ ! -e "${repodir}" ]; then
     "${mkdir}" -m 750 -p "${repodir}"
 fi
-
 cd "${repodir}"
 if "${git}" clone "${repourl}" "${repodir}"; then
     printok "clone complete"
