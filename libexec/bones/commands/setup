@@ -8,8 +8,8 @@ set -e
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    "$(dirname "$0")"/scripts/setup-user
-    "$(dirname "$0")"/scripts/setup-doas
+    "$(dirname "$0")"/../scripts/setup-user
+    "$(dirname "$0")"/../scripts/setup-doas
     printok "setup complete"
 else
     printerr "you must be root"
