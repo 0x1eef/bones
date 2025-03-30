@@ -22,15 +22,15 @@ sections for more details.
 
 * bones clone <br>
 Clones into /home/_bones/.local/share/skeletons <br>
-Requires membership of the '\_bones' group <br>
+Requires membership of the `_bones` group <br>
 
 * bones pull <br>
 Pulls updates <br>
-Requires membership of the '\_bones' group <br>
+Requires membership of the `_bones` group <br>
 
 * bones rm <br>
 Removes the skeleton repository <br>
-Requires membership of the '\_bones' group <br>
+Requires membership of the `_bones` group <br>
 
 * bones install <br>
 Installs into a target directory
@@ -97,9 +97,9 @@ doas -u root -- make deinstall
 #### Configuration
 
 After installation is complete the bones environment should be setup.
-That involves the creation of the '\_bones' user and group, as well as
+That involves the creation of the `_bones` user and group, as well as
 the creation of /home/\_bones. A user should also be added to the
-'\_bones' group. The process is mostly automated:
+`_bones` group. The process is mostly automated:
 
 ```sh
 doas -u root -- bones setup
