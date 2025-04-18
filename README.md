@@ -8,9 +8,9 @@ ${HOME} directory. See the
 [Install](#install), [CLI](#cli) and [Concepts](#concepts)
 sections for more details.
 
-## CLI
+## Commands
 
-#### Commands
+#### Group
 
 * bones clone <br>
 Clones into /home/_bones/.local/share/skeletons <br>
@@ -25,7 +25,18 @@ Removes the skeleton repository <br>
 Requires membership of the `_bones` group <br>
 
 * bones install <br>
-Installs into a target directory
+Installs into a target directory <br>
+Requires membership of the `_bones` group (or superuser) <br>
+
+#### Superuser
+
+* bones setup <br>
+Creates the `_bones` user, group and home directory <br>
+Requires superuser privileges <br>
+
+* bones teardown <br>
+Removes the `_bones` user, group and home directory <br>
+Requires superuser privileges <br>
 
 ## Concepts
 
