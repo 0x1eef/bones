@@ -38,7 +38,7 @@ The user running a command that is delegated to the
 The /home/_bones directory is where skeletons are stored,
 and only a superuser or a member of the `_bones` group can
 access them. Most of the setup process is automated (via
-`bones setup`), but user9s) must be added to the `_bones`
+`bones setup`), but user(s) must be added to the `_bones`
 group manually.
 
 #### Repository
