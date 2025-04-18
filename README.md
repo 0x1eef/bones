@@ -4,15 +4,7 @@ The bones utility is written in POSIX shell and can clone,
 update, and install skeletons derived from a git repository.
 It is inspired by a similar concept from UNIX operating systems &mdash;
 where a skeleton directory can serve as the basis for a new user's
-${HOME} directory.
-
-Most commands in bones are delegated to the `_bones` user
-via the [doas(1)](https://man.openbsd.org/doas) utility.
-The user running a command that is delegated to the
-`_bones` user must be a member of the `_bones` group.
-The /home/_bones directory is where skeletons are stored,
-and only a superuser or a member of the `_bones` group can
-access them. Most of the setup is automated. See the
+${HOME} directory. See the
 [Install](#install), [CLI](#cli) and [Concepts](#concepts)
 sections for more details.
 
@@ -37,21 +29,27 @@ Installs into a target directory
 
 ## Concepts
 
-#### Terminology
+#### Permissions
 
-In the context of the bones utility, a git repository is defined
+Most commands in bones are delegated to the `_bones` user
+via the [doas(1)](https://man.openbsd.org/doas) utility.
+The user running a command that is delegated to the
+`_bones` user must be a member of the `_bones` group.
+The /home/_bones directory is where skeletons are stored,
+and only a superuser or a member of the `_bones` group can
+access them. Most of the setup process is automated (via
+`bones setup`), but user9s) must be added to the `_bones`
+group manually.
+
+#### Repository
+
+Within the context of the bones utility, a git repository is defined
 as a collection of skeletons. Within the cloned git repository,
 there can be one or more directories at the top-level.
 Each directory is considered to be a skeleton in its own right,
 and a cloned repository can contain many of them. It is important
 to realize that there can only be one git repository, and that
 the git repository can have many skeletons.
-
-For example, one directory could be for unprivileged users and
-another directory could be for a superuser. When used with the
-"bones install" command, a directory from a skeleton can be
-installed in a way similar to:
-`bones install dirname /target`.
 
 #### Conflicts
 
