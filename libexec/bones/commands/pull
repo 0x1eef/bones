@@ -1,18 +1,21 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 repodir="/home/_bones/.local/share/skeletons"
 git="$(dirname "${0}")/.."/scripts/git
 branch=""
 
-##
+#
 # functions
+#
 . "$(dirname "${0}")/.."/functions/print.sh
 
-##
+#
 # main
+#
 if [ ! -d "${repodir}" ]; then
     printerr "${repodir} is not a directory"
     exit 1

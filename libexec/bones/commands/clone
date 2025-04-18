@@ -1,19 +1,22 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 repourl="${1}"
 repodir="/home/_bones/.local/share/skeletons"
 git="$(dirname "${0}")/.."/scripts/git
 mkdir="$(dirname "${0}")/.."/scripts/mkdir
 
-##
+#
 # functions
+#
 . "$(dirname "${0}")/.."/functions/print.sh
 
-##
+#
 # main
+#
 if [ -z "${repourl}" ]; then
     printerr "provide a repository url"
     exit 1

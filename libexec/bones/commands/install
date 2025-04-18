@@ -1,16 +1,18 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 dirname="${1}"
 destdir="${2}"
 repodir="/home/_bones/.local/share/skeletons/${dirname}"
 user="$(id -n -u)"
 group="$(id -n -g)"
 
-##
+#
 # functions
+#
 . "$(dirname "${0}")/.."/functions/print.sh
 
 parse_options()
@@ -52,8 +54,9 @@ set_permissions()
     printok "set permissions"
 }
 
-##
+#
 # main
+#
 if [ -z "${destdir}" ]; then
     printerr "provide the path to a target"
     exit 1

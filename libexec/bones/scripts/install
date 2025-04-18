@@ -1,20 +1,23 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 repodir="${1}"
 destdir="${2}"
 file="${3}"
 destination="${destdir}"/"${file}"
 source="${repodir}"/"${file}"
 
-##
+#
 # functions
+#
 . "$(dirname "${0}")/.."/functions/print.sh
 
-##
+#
 # main
+#
 if [ -e "${destination}" ]; then
     if [ "$(cat "${destination}")" = "" ]; then
         install -m 644 "${source}" "${destination}"

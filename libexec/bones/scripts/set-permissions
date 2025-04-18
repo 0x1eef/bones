@@ -1,18 +1,21 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 destdir="${1}"
 user="${2}"
 group="${3}"
 
-##
+#
 # functions
+#
 . "$(dirname "${0}")/.."/functions/print.sh
 
-##
+#
 # main
+#
 if [ -e "${destdir}" ]; then
     chmod 750 "${destdir}"
     chown -R "${user}":"${group}" "${destdir}"

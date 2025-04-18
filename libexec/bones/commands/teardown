@@ -1,16 +1,19 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 user="_bones"
 
-##
+#
 # functions
+#
 . "$(dirname "$0")"/../functions/print.sh
 
-##
+#
 # main
+#
 if [ "$(id -u)" = "0" ]; then
     if which pw > /dev/null 2>&1; then
         pw userdel  -n "${user}"  > /dev/null 2>&1 || true

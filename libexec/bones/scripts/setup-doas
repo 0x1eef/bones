@@ -1,13 +1,15 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 localbase="$(dirname "${0}")"/../../..
 sharedir="${localbase}"/share/bones
 
-##
+#
 # functions
+#
 . "$(dirname "$0")"/../functions/print.sh
 
 source()
@@ -28,8 +30,9 @@ destination()
     fi
 }
 
-##
+#
 # main
+#
 if [ -e "$(destination)" ]; then
     cat "$(source)" |
     while read -r line; do

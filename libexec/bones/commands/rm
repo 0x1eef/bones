@@ -1,17 +1,20 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 user="_bones"
 repodir="/home/_bones/.local/share/skeletons"
 
-##
+#
 # functions
+#
 . "$(dirname "${0}")/.."/functions/print.sh
 
-##
+#
 # main
+#
 if [ -e "${repodir}" ]; then
     printf "bones: are you sure? [y/N] "
     read -r reply

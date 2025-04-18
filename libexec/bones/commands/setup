@@ -1,12 +1,14 @@
 #!/bin/sh
 set -e
 
-##
+#
 # functions
+#
 . "$(dirname "$0")"/../functions/print.sh
 
-##
+#
 # main
+#
 if [ "$(id -u)" = "0" ]; then
     "$(dirname "$0")"/../scripts/setup-user
     "$(dirname "$0")"/../scripts/setup-doas
