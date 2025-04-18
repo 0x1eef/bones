@@ -8,7 +8,7 @@ ${HOME} directory. See the
 [Install](#install), [CLI](#cli) and [Concepts](#concepts)
 sections for more details.
 
-## Commands
+## CLI
 
 #### Group
 
